@@ -1,4 +1,4 @@
-[
+ export default [
   {
     "value": "Dateline Standard Time",
     "abbr": "DST",

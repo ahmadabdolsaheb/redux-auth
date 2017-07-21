@@ -28,6 +28,7 @@ class SignupForm extends React.Component {
   }
 
   render() {
+
     const options = timezones.map((obj) => {
       <option key={obj.text} value={obj.abbr}> {obj.text}</option>
     });
