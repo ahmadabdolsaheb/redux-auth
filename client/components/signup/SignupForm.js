@@ -30,8 +30,12 @@ class SignupForm extends React.Component {
   render() {
 
     const options = timezones.map((obj) => {
-      <option key={obj.text} value={obj.abbr}> {obj.text}</option>
+      return (<option key={obj.text.toString()}
+                      value={obj.abbr.toString()}>
+                      {obj.value.toString()}</option>);
+
     });
+    console.log(options);
     return (
       <form onSubmit={this.onSubmit}>
         <h1> Join our community! </h1>
