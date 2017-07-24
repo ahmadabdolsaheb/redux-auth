@@ -30,12 +30,11 @@ class SignupForm extends React.Component {
   render() {
 
     const options = timezones.map((obj) => {
-      return (<option key={obj.text.toString()}
-                      value={obj.abbr.toString()}>
-                      {obj.value.toString()}</option>);
+      return (<option key={obj.text}
+                      value={obj.abbr}>
+                      {obj.text}</option>);
 
     });
-    console.log(options);
     return (
       <form onSubmit={this.onSubmit}>
         <h1> Join our community! </h1>
@@ -89,10 +88,8 @@ class SignupForm extends React.Component {
             onChange={this.onChange}
             value={this.state.timezone}
             >
-            <option value="" disabled>
-              Choose your timezone
-              {options}
-            </option>
+            <option value="" disabled>Choose your timezone</option>
+            {options}
           </select>
         </div>
 
