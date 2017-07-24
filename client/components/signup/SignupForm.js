@@ -9,7 +9,7 @@ class SignupForm extends React.Component {
       email: '',
       password: '',
       passwordConfirmation: '',
-      timeZone: ''
+      timezone: ''
     }
 
     this.onChange = this.onChange.bind(this);
