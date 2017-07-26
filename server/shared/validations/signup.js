@@ -19,7 +19,7 @@ export default function validateInput(data) {
     errors.passwordConfirmation = 'This field is required';
   }
   if(!Validator.equals(data.password, data.passwordConfirmation)) {
-    errors.email = 'Passwords must match';
+    errors.passwordConfirmation = 'Passwords must match';
   }
   if(Validator.isEmpty(data.timezone)) {
     errors.timezone = 'This field is required';
