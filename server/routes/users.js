@@ -6,19 +6,17 @@ import isEmpty from 'lodash/isEmpty';
 
 let router = express.Router();
 
-router.post('/', (req, res) => {
+function validateInput(data, otherValidations) {
 
-  function validateInput(data, otherValidations) {
+ let { errors } = otherValidations(data);
 
-   let { errors } = otherValidations(data);
-
-   return UserModel.find({
-    $or: [
-     {username: data.username},
-     {email: data.email}
-    ]
-   })
-   .then(user => {
+ return UserModel.find({
+  $or: [
+   {username: data.username},
+   {email: data.email}
+  ]
+ })
+ .then(user => {
     if (user.length) {
      if (user[0].username === data.username) {
       errors.username = 'Username has been taken';
@@ -31,9 +29,21 @@ router.post('/', (req, res) => {
      errors,
      isValid: isEmpty(errors)
     }
-   });
-  }
+ });
+}
 
+router.get('/:identifier', (req, res) => {
+  return UserModel.find({
+   $or: [
+    {username: req.params.identifier},
+    {email: req.params.identifier}
+   ]
+ }).then(user => {
+   res.json({user});
+ });
+});
+
+router.post('/', (req, res) => {
   validateInput(req.body, commonValidations).then(({ errors, isValid }) => {
     if (isValid) {
       const { username, password, timezone, email } = req.body;
