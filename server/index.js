@@ -9,7 +9,7 @@ import webpackhotmiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
 
 import users from './routes/users';
-
+import auth from './routes/auth';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/vote');
@@ -19,6 +19,7 @@ let app = express();
 app.use(bodyParser.json());
 
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 const compiler = webpack(webpackConfig);
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/login';
 import PropTypes from 'prop-types';
 
+
 class LoginForm extends React.Component {
   constructor(props){
     super(props);
@@ -32,8 +33,8 @@ class LoginForm extends React.Component {
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true});
       this.props.login(this.state).then(
-        (res) => this.context.router.push('/'),
-        (err) => this.setState({ errors: err.data.errors, isLoading: false})
+        (res) => this.context.router.history.push('/'),
+        (err) => this.setState({ errors: err.response.data.errors, isLoading: false})
       );
     }
   }
@@ -47,6 +48,8 @@ class LoginForm extends React.Component {
     return(
       <form onSubmit={this.onSubmit}>
         <h1>Login</h1>
+
+        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
 
         <TextFieldGroup
           field="identifier"
