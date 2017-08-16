@@ -3,7 +3,8 @@ import timezones from '../../data/timezones';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import validateInput from '../../../server/shared/validations/signup';
-import TextFieldGroup from '../common/TextFieldGroup'
+import TextFieldGroup from '../common/TextFieldGroup';
+
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
