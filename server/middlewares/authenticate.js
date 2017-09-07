@@ -4,13 +4,15 @@ import UserModel from '../models/users';
 export default (req, res, next) => {
   const authorizationHeader = req.headers['authorization'];
   let token;
-
+  console.log("authorizationHeader: " + authorizationHeader);
   if (authorizationHeader) {
     token = authorizationHeader.split(' ')[1];
   }
 
   if(token){
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
+      console.log("token from header: " + token);
+      console.log(decoded);
       if(err) {
         res.status(401).json({ error: 'Failed to authenticate'});
       } else {
